@@ -1,0 +1,4 @@
+requests
+Pillow
+huggingface-hub
+nltk
