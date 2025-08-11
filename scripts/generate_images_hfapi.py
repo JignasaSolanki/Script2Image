@@ -13,6 +13,8 @@ from nltk.tokenize import sent_tokenize
 
 # Ensure punkt is available
 nltk.download("punkt", quiet=True)
+nltk.download("punkt_tab", quiet=True)
+
 
 # ---- Configuration: change if you want other models ----
 TEXT_MODEL = "google/flan-t5-large"          # HF model for expanding sentence -> detailed prompt
