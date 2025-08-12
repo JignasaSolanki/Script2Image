@@ -1,4 +1,6 @@
-requests
+diffusers
+transformers
+accelerate
+safetensors
+torch
 Pillow
-huggingface-hub
-nltk
