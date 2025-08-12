@@ -17,7 +17,7 @@ nltk.download("punkt_tab", quiet=True)
 
 
 # ---- Configuration: change if you want other models ----
-TEXT_MODEL = "google/flan-t5-base"          # HF model for expanding sentence -> detailed prompt
+TEXT_MODEL = "declare-lab/flan-alpaca-large"          # HF model for expanding sentence -> detailed prompt
 IMAGE_MODEL = "runwayml/stable-diffusion-v1-5"  # HF image generation model (choose one you have access to)
 MAX_PROMPT_SENTENCES = 6
 OUTPUT_DIR = Path("generated_images")
