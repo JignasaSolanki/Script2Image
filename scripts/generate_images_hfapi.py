@@ -50,7 +50,7 @@ for idx, sentence in enumerate(sentences, 1):
     detailed_prompt,
     num_inference_steps=50,   # more steps = better detail, slower on CPU
     guidance_scale=7.5        # how closely it follows the text
-    ).images[0]
+).images[0]
 
     image_path = f"generated_images/image_{idx}.png"
     image.save(image_path)
