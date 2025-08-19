@@ -4,3 +4,6 @@ accelerate
 safetensors
 torch
 Pillow
+TTS
+
+
