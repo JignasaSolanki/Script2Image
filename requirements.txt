@@ -5,5 +5,8 @@ safetensors
 torch
 Pillow
 TTS
+moviepy
+pydub
+
 
 
