@@ -1,0 +1,61 @@
+name: Video Generator (CPU, Offline)
+
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: "Enter the full script text (will be split into sentences)"
+        required: true
+
+jobs:
+  video_job:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install system packages (ffmpeg & fonts)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-dejavu-core libsndfile1 espeak-ng
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Cache HuggingFace/Coqui models for speed
+      - name: Cache models
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/huggingface
+            ~/.local/share/tts
+          key: ${{ runner.os }}-hf-tts-v1
+
+      - name: Generate Video (TTS + Images + Captions)
+        env:
+          INPUT_SCRIPT: ${{ github.event.inputs.script }}
+        run: |
+          python scripts/video_agent.py
+
+      - name: Upload Audio Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-audio-mp3
+          path: generated_audio/final_audio.mp3
+          if-no-files-found: error
+
+      - name: Upload Video Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-video-mp4
+          path: generated_video/final_video.mp4
+          if-no-files-found: error
