@@ -48,7 +48,7 @@ for idx, sentence in enumerate(sentences, 1):
 
     image = pipe(
     detailed_prompt,
-    num_inference_steps=50,   # more steps = better detail, slower on CPU
+    num_inference_steps=30,   # more steps = better detail, slower on CPU
     guidance_scale=7.5        # how closely it follows the text
     ).images[0]
 
